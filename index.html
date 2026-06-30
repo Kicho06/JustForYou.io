@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4 Months With You 🌸</title>
+
+<!-- Fonts: a romantic display serif paired with a soft rounded body font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     PERSISTENT LAYERS — visible on every screen
+     ============================================================ -->
+
+<!-- Falling sakura petals canvas (pure JS, see script.js) -->
+<canvas id="sakura-canvas"></canvas>
+
+<!-- ============================================================
+     SCREEN 1 — THE LOVE GATE
+     ============================================================ -->
+<section id="screen-gate" class="screen active">
+
+  <!-- Base background photo + pink overlay -->
+  <div class="bg-layer">
+    <img src="assets/img/bg.png" alt="Couples Main Background" class="bg-photo">
+    <div class="bg-overlay"></div>
+  </div>
+
+  <div class="gate-card">
+    <p class="eyebrow">a little something for you</p>
+    <h1 class="gate-title">Four Months<br><span>&amp; counting</span></h1>
+    <p class="gate-sub">This door only opens for one person. Prove it's you. 💗</p>
+
+    <!-- 6-digit PIN, hearts as containers -->
+    <div class="pin-row" id="pinRow">
+      <!-- 6 heart containers; each uses a clean SVG heart path with a digit overlaid on top -->
+      <div class="heart-pin" data-index="0"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+      <div class="heart-pin" data-index="1"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+      <div class="heart-pin" data-index="2"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+      <div class="heart-pin" data-index="3"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+      <div class="heart-pin" data-index="4"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+      <div class="heart-pin" data-index="5"><span class="heart-shape"><svg class="heart-svg" viewBox="0 0 32 29"><path d="M16 27 C 16 27 2 17.5 2 9.2 C 2 4.4 5.7 1 9.9 1 C 12.7 1 15 2.6 16 5 C 17 2.6 19.3 1 22.1 1 C 26.3 1 30 4.4 30 9.2 C 30 17.5 16 27 16 27 Z"/></svg><span class="pin-digit"></span></span></div>
+    </div>
+
+    <!-- Numeric keypad -->
+    <div class="keypad" id="keypad">
+      <button class="key" data-key="1">1</button>
+      <button class="key" data-key="2">2</button>
+      <button class="key" data-key="3">3</button>
+      <button class="key" data-key="4">4</button>
+      <button class="key" data-key="5">5</button>
+      <button class="key" data-key="6">6</button>
+      <button class="key" data-key="7">7</button>
+      <button class="key" data-key="8">8</button>
+      <button class="key" data-key="9">9</button>
+      <button class="key key-clear" data-key="clear">clear</button>
+      <button class="key" data-key="0">0</button>
+      <button class="key key-back" data-key="back">⌫</button>
+    </div>
+
+    <!-- Love verification slider, styled like a volume bar -->
+    <div class="slider-block">
+      <label for="loveSlider" class="slider-label">How much do you love me?</label>
+      <div class="slider-wrap">
+        <input type="range" id="loveSlider" min="0" max="101" value="0" step="1">
+        <div class="slider-track-fill" id="sliderFill"></div>
+      </div>
+      <p class="slider-value"><span id="sliderValueText">0</span>%</p>
+    </div>
+
+    <button class="btn-primary" id="unlockBtn">Open My Heart</button>
+  </div>
+
+  <!-- Playful rejection popup -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-card">
+      <p>Nice try! But that's not enough love to open this website! 🥺💞</p>
+      <button class="btn-secondary" id="popupClose">okay, I'll love you more</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCREEN 2 — MINI GAME (4 PICS 1 WORD)
+     ============================================================ -->
+<section id="screen-game" class="screen">
+
+  <div class="bg-layer">
+    <div class="bg-overlay bg-overlay--solid"></div>
+  </div>
+
+  <div class="game-card">
+    <p class="eyebrow">one last little test</p>
+    <h2 class="game-title">4 Pics, 1 Word</h2>
+    <p class="game-sub">Guess the word.</p>
+
+    <!-- 4 picture clues -->
+    <div class="pic-grid">
+      <div class="pic-cell"><img src="assets/img/pics1.jpg" alt="Clue photo 1"></div>
+      <div class="pic-cell"><img src="assets/img/pics3.png" alt="Clue photo 2"></div>
+      <div class="pic-cell"><img src="assets/img/pics4.png" alt="Clue photo 3"></div>
+      <div class="pic-cell"><img src="assets/img/pics2.jpg" alt="Clue photo 4"></div>
+    </div>
+
+    <!-- Answer hearts: M A H A L -->
+    <div class="answer-row" id="answerRow"></div>
+
+    <!-- Scrambled letter keyboard, generated by JS -->
+    <div class="letter-keyboard" id="letterKeyboard"></div>
+
+    <div class="game-controls">
+      <button class="btn-secondary" id="gameClearBtn">Clear</button>
+      <button class="btn-secondary" id="gameBackBtn">⌫ Backspace</button>
+    </div>
+
+    <p class="game-feedback" id="gameFeedback"></p>
+  </div>
+
+  <!-- confetti container -->
+  <div class="confetti-layer" id="confettiLayer"></div>
+</section>
+
+<!-- ============================================================
+     SCREEN 3 — MEMORIES & GIFTS DASHBOARD
+     ============================================================ -->
+<section id="screen-dashboard" class="screen">
+
+  <div class="bg-layer">
+    <div class="bg-overlay bg-overlay--solid"></div>
+  </div>
+
+  <div class="dash-wrap">
+    <p class="eyebrow">happy 4th monthsary, my baby</p>
+    <h2 class="dash-title">A Little World I Made For You</h2>
+    <p class="dash-sub">Tap a card to open it.</p>
+
+    <div class="card-grid">
+
+      <button class="mem-card" data-modal="modal-bouquet">
+        <span class="mem-icon">💐</span>
+        <span class="mem-card-title">Digital Bouquet</span>
+        <span class="mem-card-sub">a flower that doesn't wilt</span>
+      </button>
+
+      <button class="mem-card" data-modal="modal-song">
+        <span class="mem-icon">🎵</span>
+        <span class="mem-card-title">Our Song</span>
+        <span class="mem-card-sub">play it loud</span>
+      </button>
+
+      <button class="mem-card" data-screen="screen-album">
+        <span class="mem-icon">📷</span>
+        <span class="mem-card-title">Photo Album</span>
+        <span class="mem-card-sub">us, in pixels</span>
+      </button>
+
+      <button class="mem-card" data-modal="modal-video">
+        <span class="mem-icon">🎬</span>
+        <span class="mem-card-title">A Little Video</span>
+        <span class="mem-card-sub">just for you</span>
+      </button>
+
+      <button class="mem-card" data-modal="modal-letter">
+        <span class="mem-icon">💌</span>
+        <span class="mem-card-title">The Love Letter</span>
+        <span class="mem-card-sub">read it slowly</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ===================== MODAL: DIGITAL BOUQUET ===================== -->
+  <div class="modal-overlay" id="modal-bouquet" data-modal-overlay>
+    <div class="modal-box modal-box--bouquet">
+      <button class="modal-close" data-close>✕</button>
+      <h3 class="modal-heading">A Bouquet That Never Wilts</h3>
+      <img src="assets/img/bouquet.png" alt="Illustration of a romantic flower bouquet" class="bouquet-img">
+      <p class="bouquet-caption">Real flowers fade in a week. This one's for every day after. 🌷</p>
+      <button class="btn-secondary" data-close>Close</button>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL: SPECIAL SONG ===================== -->
+  <div class="modal-overlay" id="modal-song" data-modal-overlay>
+    <div class="modal-box modal-box--song">
+      <button class="modal-close" data-close>✕</button>
+      <h3 class="modal-heading">This Reminds Me of Us</h3>
+      <div class="song-video-wrap">
+        <!-- Replace song-placeholder.mp4 with your downloaded video's filename/path -->
+        <video controls poster="https://via.placeholder.com/640x360">
+          <source src="assets/video/[TubePull] Libu-Libong_Buwan_Uuwian_-_Kyle_Raphael_Lyric_Video.mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <button class="btn-secondary" data-close>Close</button>
+    </div>
+  </div>
+
+  <!-- Lightbox for album (shared by the photo strip screen) -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <span class="lightbox-close" id="lightboxClose">✕</span>
+    <img src="" alt="Expanded memory photo" id="lightboxImg">
+  </div>
+
+  <!-- ===================== MODAL: VIDEO FILE ===================== -->
+  <div class="modal-overlay" id="modal-video" data-modal-overlay>
+    <div class="modal-box modal-box--video">
+      <button class="modal-close" data-close>✕</button>
+      <h3 class="modal-heading">A Little Video, Just For You</h3>
+      <div class="video-tag-wrap">
+        <!-- Replace video-placeholder.mp4 with your actual clip's filename/path -->
+        <video controls poster="https://via.placeholder.com/640x360">
+          <source src="assets/video/ShortVid.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <button class="btn-secondary" data-close>Close</button>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL: LOVE LETTER ===================== -->
+  <div class="modal-overlay" id="modal-letter" data-modal-overlay>
+    <div class="modal-box modal-box--letter">
+      <button class="modal-close" data-close>✕</button>
+
+      <!-- Stage 1: sealed envelope -->
+      <div class="envelope-stage" id="envelopeStage">
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-seal">💌</div>
+        </div>
+        <p class="envelope-hint">tap the envelope to open it</p>
+      </div>
+
+      <!-- Stage 2: letter paper, hidden until envelope opens -->
+      <div class="letter-paper" id="letterPaper">
+        <div class="letter-scroll">
+          <p class="letter-greeting">My Baby,</p>
+          <div id="letterBody" class="letter-body">
+            <!-- Paragraphs are injected and animated one by one by script.js -->
+          </div>
+          <p class="letter-signoff">Forever yours,<br>your maxxim rider 🤍</p>
+        </div>
+        <button class="btn-secondary" data-close>Close Letter</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     SCREEN — PHOTO ALBUM (animated photo strips, its own page)
+     ============================================================ -->
+<section id="screen-album" class="screen">
+
+  <div class="bg-layer">
+    <div class="bg-overlay bg-overlay--solid"></div>
+  </div>
+
+  <div class="album-wrap">
+    <button class="back-btn" id="albumBackBtn">← back</button>
+    <p class="eyebrow">happy 4th monthsary</p>
+    <h2 class="album-title">Us, In Pixels</h2>
+    <p class="album-sub">Two little photo strips, just like the booth ones. Tap any frame to zoom in.</p>
+
+    <div class="strip-row">
+      <!-- Strip 1 -->
+      <div class="photo-strip strip-left">
+        <div class="strip-pin"></div>
+        <div class="strip-body">
+          <div class="strip-frame"><img src="assets/img/memory1.png" alt="Memory photo 1" class="album-photo"></div>
+          <div class="strip-frame"><img src="assets/img/memory2.png" alt="Memory photo 2" class="album-photo"></div>
+          <div class="strip-frame"><img src="assets/img/memory3.png" alt="Memory photo 3" class="album-photo"></div>
+          <p class="strip-caption">est. 4 months ago 🌸</p>
+        </div>
+      </div>
+
+      <!-- Strip 2 -->
+      <div class="photo-strip strip-right">
+        <div class="strip-pin"></div>
+        <div class="strip-body">
+          <div class="strip-frame"><img src="assets/img/memory4.png" alt="Memory photo 4" class="album-photo"></div>
+          <div class="strip-frame"><img src="assets/img/memory5.png" alt="Memory photo 5" class="album-photo"></div>
+          <div class="strip-frame"><img src="assets/img/memory6.png" alt="Memory photo 6" class="album-photo"></div>
+          <p class="strip-caption">to a hundred more 💕</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
